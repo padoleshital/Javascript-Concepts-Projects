@@ -1,4 +1,4 @@
-
+// Write a function to reverse a string.
 function reverseString(str)
 {
      let reversestr ="";
@@ -11,3 +11,14 @@ function reverseString(str)
 str="Shital"
 result = reverseString(str);
 console.log(result); //latihS
+
+
+// reverse string using javaScript methods
+console.log(reverseString(value))
+
+function reverseStringUsingmethods(value)
+{
+    return value.split("").reverse().join()
+
+}
+reverseStringUsingmethods(value)

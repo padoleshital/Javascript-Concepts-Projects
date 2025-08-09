@@ -12,7 +12,7 @@ function isPalindrom(str)
     return true;
 }
 
-
+//Approch 1
 
 function checkPalindrom(str){
     let ans = isPalindrom(str)
@@ -27,5 +27,26 @@ function checkPalindrom(str){
 }
 let test ="shital"
 
+
 console.log(isPalindrom(test))
 console.log(checkPalindrom(test))
+
+//Approch 2 using methods
+function isPalindrom(str)
+{
+    let rev = "";
+    rev = str.split('').reverse().join('')
+    
+    if(rev === str)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+const str="race";
+const str1 ="nitin";
+let result = isPalindrom(str1) 
+console.log(result); // true

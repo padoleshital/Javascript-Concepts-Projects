@@ -12,7 +12,7 @@ function max_Element(arr)
         }
     }
     return max;
-    or
+ 
     
 }
 let arr = [10,30,100,5];

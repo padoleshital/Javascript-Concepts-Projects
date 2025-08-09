@@ -17,3 +17,8 @@ arr = [1,24,2,3,4,5];
 result = reverse(arr); 
 console.log(result); // [5, 4, 3, 2, 24, 1]
 
+// with JavaScript methods
+
+let arr=[1,2,3,4,5,6,7];
+let result = arr.reverse();
+console.log(result);
