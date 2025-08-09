@@ -8,26 +8,31 @@
 | 2 | [Execution Context](#Execution-context-in-javascript)|
 | 3 | [Lexical Environment](#Lexical-Environment)|
 | 4 | [Dynamic Scope And Lexical Scope](#Dynamic-Scope-And-Lexical-Scope)|
+||[Scope Chain](#Scope-Chain)|
+||[Javascript Variables](#Javascript-Variables)|
 | 5 | [Coercion and Conversion ](#Coercion-Conversion)|
 | 6 | [Primitive values](#Primitive-values)|
 | 7 | [Non-Primitive Values](#Non-Primitive-Values)|
 | 8 | [Concept of Call() apply() bind()](#Concept-of-Call-apply-bind)|
 | 9 | [Context vs Scope](#Context-vs-Scope)|
-| 10 | [Let Var Const](#let-var-const)|
-|   |  [use strict](#use-strict)|
-| 11 | [What is a prototype chain](#what-is-a-prototype-chain) |
-| 12 | [What is the Difference Between `call`, `apply`, and `bind`](#what-is-the-difference-between-call-apply-and-bind) |
-| 13 | [What is JSON and its common operations](#what-is-json-and-its-common-operations) |
-|||
-|||
-|||
-|||
-|||
-|||
-|||
-|||
-|||
-|||
+| 10| [Let Var Const](#let-var-const)|
+| 11|  [use strict](#use-strict)|
+| 1|[Hoisting In javascript](#Hoisting-In-javascript)|
+||[Function](#Function)|
+| 1| [Closures](#)|
+| 13| [What is the Difference Between `call`, `apply`, and `bind`](#what-is-the-difference-between-call-apply-and-bind) |
+| 1|[Shallow Copy](#Shallow-Copy)|
+| 1|[Deep Copy](#Deep-Copy)|
+| 12| [What is a prototype chain](#what-is-a-prototype-chain) |
+| 14| [What is JSON and its common operations](#what-is-json-and-its-common-operations) |
+||[](#)|
+||[](#)|
+||[](#)|
+||[](#)|
+||[](#)|
+||[](#)|
+||[](#)|
+||[](#)|
 |||
 |||
 |||
@@ -79,7 +84,7 @@ When the JavaScript engine scans a script file, it makes an environment called t
 
     
 
-    ### Phases of Execution Context (3 Phases):
+    #### Phases of Execution Context (3 Phases):
     1. **Creation Phase**
     - Creates global object (`window` in browsers, `global` in Node.js).
     - Allocates memory for variables and functions.
@@ -214,7 +219,7 @@ sayMyName()()()()
 
 ---
 
-## Context vs Scope
+#### Context vs Scope
 In programming, scope and context are distinct concepts related to how variables and functions are accessed, but they serve different purposes. Scope defines the accessibility of variables within different parts of your code, while context determines the value of the this keyword within a function. 
 
 **Scope**
@@ -329,7 +334,9 @@ if (123)       // true  (non-zero number is truthy)
 **[⬆ Back to Top](#table-of-contents)**
 
 ---
-## Var
+### Javascript Variables
+
+#### Var
 - Function-scoped or globally scoped.
 - Can be redeclared and reassigned.
 - Gets hoisted and initialized as undefined.
@@ -380,7 +387,7 @@ loop();
 
 
 ```
-## let
+#### let
 - Block-scoped.
 - Can be reassigned but not redeclared within the same scope.
 - Hoisted but not initialized (Temporal Dead Zone).
@@ -411,7 +418,7 @@ loop();
 
 ```
 
-## const
+#### const
 - Block-scoped.
 - Cannot be reassigned after declaration.
 - Objects and arrays declared with const can still be mutated.
@@ -501,7 +508,7 @@ console.log(newArr); // [1, 2, 3, 4]
 
 ---
 
-## Use Strict
+### Use Strict
 
 As height is not declared in varibale, their is chance of memory likage to over come this handling error javascript use **use Strict**
 
@@ -511,7 +518,7 @@ It helps you write cleaner, safer, and more predictable code.
 
 It is use to Prevents accidental global variable creation.
 
-Makes debugging easier by giving early warnings
+Makes debugging easier by giving early warnings.
 
 ```js
 'use strict'
@@ -683,7 +690,7 @@ function a() {
   | `apply`| Yes                           | Array or array-like object       | Function's result |
   | `bind` | No                            | (Optional) preset, then rest     | New function      |
 
-  ## Key Points
+  #### Key Points
 
   - **`call`** and **`apply`** are almost interchangeable; both invoke the function immediately, but differ in how arguments are passed.
       - _Tip:_ "Call is for Comma-separated, Apply is for Array."
@@ -753,6 +760,9 @@ nestedKey: "nestedValue"
 key: "value"}
 */
 ```
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ### Deep Copy
 
@@ -780,28 +790,6 @@ console.log(deepCopy,'deepCopy')
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
-
-###  Es6+-  We use Arrow function
-Using Arrow Function we can Inherits from outer scope this way we can solve issue.
-
-```js
-const obj = {
-  name:'Billy',
-  sing()
-  {
-    console.log(this);
-    var anotherFunc = () =>
-    {
-      console.log('b',this);
-    }
-    anotherFunc();
-  }
-}
-```
-
-**[⬆ Back to Top](#table-of-contents)**
-
----
 
 ### This keyword
 
@@ -878,11 +866,44 @@ console.log(d.say()()); //{ name: 'jay', say: [Function: say] }
 ---
 
 
-## Functions
+### Functions
 - Functions are blocks of reusable code.
 - Can be defined as declarations, expressions, or arrow functions.
 
- ### Function Expression
+```js
+//function declaretion
+function demo()
+{
+    console.log('demo')
+}
+
+//function expression
+let Demo1 = function()  {
+    return "${demo} is added";
+}
+// or using arrow function
+//get complile at run time
+var canada = () =>{
+    console.log('cold');
+}
+
+//function invokcation/ call
+canada();
+Demo1();
+demo();
+
+function one(person1, person2)
+{
+    console.log(arguments);
+    return `${person1} is married to ${person2}`
+}
+one('tina','mina');
+```
+
+
+
+
+1.**Function Expression**
   - Not hoisted
   - Can be anonymous or named.
     ```js
@@ -892,18 +913,9 @@ console.log(d.say()()); //{ name: 'jay', say: [Function: say] }
 
    
     ```
-
-### Arrow Functions
-
-  ```js
-   function canda1 = () => {
-    console.log("canda")
-    }
-  ```
-
-###  Immediately Invoked Function Expression (IIFE)
-- Executes immediately after definition.
-- Used to create private scope.
+2.**Immediately Invoked Function Expression (IIFE)**
+  - Executes immediately after definition.
+  - Used to create private scope.
 
 
 ```js
@@ -919,14 +931,16 @@ console.log(d.say()()); //{ name: 'jay', say: [Function: say] }
 })();
 ```
 
-### Parameteried Function
+3.**Parameteried Function**
 
 
 
-#### Arguments: 
-- These are the actual values provided when you call the function. 
-- They correspond to the parameters in the order they are listed.
-- Arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function.
+4. **Arguments**
+These are the actual values provided when you call the function. 
+
+They correspond to the parameters in the order they are listed.
+
+Arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function.
 
 ```js
  function marry(person1, person2)
@@ -938,7 +952,7 @@ console.log(d.say()()); //{ name: 'jay', say: [Function: say] }
 
  ```
 
-#### Rest Parameter:
+5. **Rest Parameter**
 - The rest parameter syntax (...parameterName) allows a function to accept an indefinite number of arguments as an array. 
 - This provides a more modern and flexible way to handle variable arguments compared to the arguments object.
  
@@ -952,3 +966,139 @@ console.log(d.say()()); //{ name: 'jay', say: [Function: say] }
  console.log(marry2('Tim','Tina'));
  
  ```
+6.**Es6+-  We use Arrow function**
+Using Arrow Function we can Inherits from outer scope this way we can solve issue.
+
+```js
+const obj = {
+  name:'Billy',
+  sing()
+  {
+    console.log(this);
+    var anotherFunc = () =>
+    {
+      console.log('b',this);
+    }
+    anotherFunc();
+  }
+}
+```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+### Closures
+
+Closures allows a function to access variables from an enclosing scope or environment even after it leaves the scope in which it was declared.
+
+A closures gives you access to its outer functions scope from the inner scope.
+
+The JavaScript engine will keep variables around inside functions that have a reference to them.
+
+Two of the major reasons closures are so beneficial are memory efficiency and encapsulation.
+
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment)
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+### Diffrence Between Typescript and Javascript
+
+TypeScript is known as an Object-oriented programming language whereas JavaScript is a prototype-based language.
+
+
+| Feature                     | JavaScript                                             | TypeScript                                                  |
+|----------------------------|--------------------------------------------------------|-------------------------------------------------------------|
+| **Type System**            | Dynamic typing (no type checking at compile time)      | Static typing (types are checked at compile time)          |
+| **Compilation**            | Interpreted by browser directly                        | Needs to be compiled to JavaScript                         |
+| **Error Detection**        | Errors are caught at runtime                           | Errors are caught during development (compile time)        |
+| **Code Scalability**       | Harder to manage in large codebases                    | Easier to manage and maintain large applications           |
+| **ES6+ Features**          | Supported (depending on browser)                       | Supports all ES6+ and adds extra features                  |
+| **Tooling Support**        | Good                                                   | Excellent (IntelliSense, refactoring, autocomplete, etc.)  |
+| **Learning Curve**         | Easy                                                   | Slightly harder (requires understanding types/interfaces)  |
+| **Community & Adoption**   | Very large and mature                                  | Rapidly growing, especially in enterprise environments     |
+| **Optional Static Typing** | ❌ No                                                   | ✅ Yes                                                      |
+| **Developed By**           | Netscape (ECMA)                                        | Microsoft                                                   |
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+###  Difference Between `this` and `window`
+
+#### What is `window`?
+
+- The global object in browsers.
+- Contains global functions like `alert`, `setTimeout`, etc.
+- Always refers to the browser window.
+
+#### What is `this`?
+
+- Refers to the **current execution context**.
+- Depends on **how** and **where** the function is called.
+
+
+
+| Context                    | `this` refers to            | `window` refers to         |
+|---------------------------|-----------------------------|----------------------------|
+| Global Scope (browser)    | `window`                    | Global browser object      |
+| Function (non-strict)     | `window`                    | Global browser object      |
+| Function (strict mode)    | `undefined`                 | Global browser object      |
+| Object Method             | That object                 | Global browser object      |
+| Arrow Function            | Lexical parent context      | Global browser object      |
+
+**Code Examples**
+
+```js
+// ✅ Global Scope
+console.log(this === window); // true
+
+// ✅ Regular Function
+function show() {
+  console.log(this); // window
+}
+show();
+```
+```js
+// ❌ Strict Mode
+"use strict";
+function display() {
+  console.log(this); // undefined
+}
+display();
+```
+```js
+
+// ✅ Object Method
+const user = {
+  name: "Shital",
+  greet() {
+    console.log(this.name); // Shital
+  }
+};
+user.greet();
+```
+```js
+// ❌ Arrow Function (inherits `this`)
+const user2 = {
+  name: "Shital",
+  greet: () => {
+    console.log(this.name); // undefined
+  }
+};
+user2.greet();
+```
+
+
+**[⬆ Back to Top](#table-of-contents)**
